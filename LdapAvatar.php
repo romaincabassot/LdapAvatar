@@ -59,7 +59,7 @@ class LdapAvatarPlugin extends MantisPlugin {
 				'ldap_avatar_field' => 'jpegphoto',
 				'ldap_last_modified_field' => 'modifytimestamp',
 				'avatar_max_width' => 80,
-				'avatar_max_height' => 80 
+				'avatar_max_height' => 80
 		);
 	}
 	
