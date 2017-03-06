@@ -1,0 +1,5 @@
+<?php
+
+$s_plugin_LdapAvatar_title = 'Avatars via LDAP';
+$s_plugin_LdapAvatar_description = 'A plugin that shows user avatars based on LDAP (requirements PHP GD and LDAP extensions).';
+
