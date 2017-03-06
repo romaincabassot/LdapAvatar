@@ -26,7 +26,7 @@ class LdapAvatarPlugin extends MantisPlugin {
 	 */
 	function register() {
 		$this->name = plugin_lang_get ( 'title' );
-		$this->description = lang_get ( 'description' );
+		$this->description = plugin_lang_get ( 'description' );
 		$this->page = 'LdapAvatarConfig.php';
 		
 		$this->version = '1.0.0';
@@ -36,7 +36,7 @@ class LdapAvatarPlugin extends MantisPlugin {
 		
 		$this->author = 'Romain Cabassot';
 		$this->contact = 'romain.cabassot@gmail.com';
-		$this->url = '';
+		$this->url = 'https://github.com/romaincabassot/MantisLdapAvatar';
 		
 		if (! extension_loaded ( 'ldap' )) {
 			log_event ( LOG_LDAP, 'Error: LDAP extension missing in php' );
@@ -46,6 +46,7 @@ class LdapAvatarPlugin extends MantisPlugin {
 		if (! extension_loaded ( 'gd' )) {
 			trigger_error ( 'Error: GD extension missing in PHP.', ERROR );
 		}
+		
 	}
 	
 	/**
@@ -59,7 +60,7 @@ class LdapAvatarPlugin extends MantisPlugin {
 				'ldap_avatar_field' => 'jpegphoto',
 				'ldap_last_modified_field' => 'modifytimestamp',
 				'avatar_max_width' => 80,
-				'avatar_max_height' => 80
+				'avatar_max_height' => 80 
 		);
 	}
 	
@@ -68,8 +69,14 @@ class LdapAvatarPlugin extends MantisPlugin {
 	 */
 	function hooks() {
 		return array (
-				'EVENT_USER_AVATAR' => 'user_get_avatar' 
+				'EVENT_USER_AVATAR' => 'user_get_avatar',
+				'EVENT_LAYOUT_RESOURCES' => 'layoutResources'
 		);
+	}
+	
+	function layoutResources() {
+		echo '	<script type="text/javascript" src="' . plugin_file('readmore.min.js') . '"></script>';
+		echo '	<script type="text/javascript" src="' . plugin_file('readmore-readme.js') . '"></script>';
 	}
 	
 	/**
@@ -159,7 +166,7 @@ class LdapAvatarPlugin extends MantisPlugin {
 	 */
 	function delete_old_avatar($p_user_name, $p_last_modified) {
 		$search = sprintf ( '%s/%s-_-_-*', plugin_config_get ( 'avatar_storage_path' ), $p_user_name );
-		$avatar_path = $this->get_avatar_path ($p_user_name, $p_last_modified);
+		$avatar_path = $this->get_avatar_path ( $p_user_name, $p_last_modified );
 		foreach ( glob ( $search ) as $filename ) {
 			if ($filename != $avatar_path && ! unlink ( $filename )) {
 				error_log ( "Unable to delete file $filename" );

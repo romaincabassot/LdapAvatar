@@ -21,6 +21,9 @@ if (isset ( $_GET ['updated'] )) {
 	echo '<div class="space-10"></div><div align="center"><span class="' . $msg_class . '">' . $msg . '</span></div><div class="space-10"></div>';
 }
 
+$Parsedown = new Parsedown ();
+$readme = implode ( '', file ( __DIR__ . '/../README.md' ) );
+
 ?>
 <div class="widget-box widget-color-blue2">
 				<div class="widget-header widget-header-small">
@@ -37,6 +40,10 @@ if (isset ( $_GET ['updated'] )) {
 
 							<table class="table table-bordered table-condensed table-striped">
 								<tbody>
+									<tr>
+										<td colspan="2"><article><?php echo $Parsedown->text($readme) ?></article>
+										</td>
+									</tr>
 									<tr>
 										<th class="category width-40"><?php echo plugin_lang_get( 'avatar_storage_path_title') ?><br>
 											<span class="small"><?php echo plugin_lang_get( 'avatar_storage_path_details') ?></span>
