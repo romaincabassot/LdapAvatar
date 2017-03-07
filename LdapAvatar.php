@@ -37,16 +37,6 @@ class LdapAvatarPlugin extends MantisPlugin {
 		$this->author = 'Romain Cabassot';
 		$this->contact = 'romain.cabassot@gmail.com';
 		$this->url = 'https://github.com/romaincabassot/MantisLdapAvatar';
-		
-		if (! extension_loaded ( 'ldap' )) {
-			log_event ( LOG_LDAP, 'Error: LDAP extension missing in php' );
-			trigger_error ( ERROR_LDAP_EXTENSION_NOT_LOADED, ERROR );
-		}
-		
-		if (! extension_loaded ( 'gd' )) {
-			trigger_error ( 'Error: GD extension missing in PHP.', ERROR );
-		}
-		
 	}
 	
 	/**
@@ -70,13 +60,34 @@ class LdapAvatarPlugin extends MantisPlugin {
 	function hooks() {
 		return array (
 				'EVENT_USER_AVATAR' => 'user_get_avatar',
-				'EVENT_LAYOUT_RESOURCES' => 'layoutResources'
+				'EVENT_LAYOUT_RESOURCES' => 'layout_resources',
+				'EVENT_LAYOUT_CONTENT_BEGIN' => 'check_requirements' 
 		);
 	}
-	
-	function layoutResources() {
-		echo '	<script type="text/javascript" src="' . plugin_file('readmore.min.js') . '"></script>';
-		echo '	<script type="text/javascript" src="' . plugin_file('readmore-readme.js') . '"></script>';
+	/**
+	 * Check the plugin requirements
+	 */
+	function check_requirements() {
+		if (! extension_loaded ( 'ldap' )) {
+			log_event ( LOG_LDAP, 'Error: LDAP extension missing in php' );
+			trigger_error ( ERROR_LDAP_EXTENSION_NOT_LOADED, WARNING );
+		}
+		
+		if (! extension_loaded ( 'gd' )) {
+			trigger_error ( 'Error: GD extension missing in PHP.', WARNING );
+		}
+		
+		$avatar_storage_path = plugin_config_get ( 'avatar_storage_path' );
+		if (! file_exists ( $avatar_storage_path ) || ! is_writable ( $avatar_storage_path ) || ! is_dir ( $avatar_storage_path )) {
+			trigger_error ( 'Invalid avatar storage path: ' . $avatar_storage_path . ' must be a writable directory.', WARNING );
+		}
+	}
+	/**
+	 * Adds JS file for collapsing of README.md on LdapAvatarConfig.php page
+	 */
+	function layout_resources() {
+		echo '	<script type="text/javascript" src="' . plugin_file ( 'readmore.min.js', false, 'LdapAvatar' ) . '"></script>';
+		echo '	<script type="text/javascript" src="' . plugin_file ( 'readmore-readme.js', false, 'LdapAvatar' ) . '"></script>';
 	}
 	
 	/**
