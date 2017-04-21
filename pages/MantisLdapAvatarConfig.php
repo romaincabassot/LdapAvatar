@@ -10,9 +10,9 @@ print_manage_menu ( 'manage_plugin_page.php' );
 	<div class="space-10"></div>
 	<div class="form-container">
 		<form
-			action="<?php echo plugin_page ( 'LdapAvatarConfig_update' ); ?>"
+			action="<?php echo plugin_page ( 'MantisLdapAvatarConfig_update' ); ?>"
 			method="post">
-<?php echo form_security_field ( ' plugin_LdapAvatarConfig_update' ); ?>
+<?php echo form_security_field ( ' plugin_MantisLdapAvatarConfig_update' ); ?>
 <?php
 if (isset ( $_GET ['updated'] )) {
 	$error_occurred = $_GET ['updated'] != '1';
@@ -20,9 +20,6 @@ if (isset ( $_GET ['updated'] )) {
 	$msg = $error_occurred ? $_GET ['msg'] : plugin_lang_get ( 'updated' ) . date ( config_get ( 'normal_date_format' ), time () );
 	echo '<div class="space-10"></div><div align="center"><span class="' . $msg_class . '">' . $msg . '</span></div><div class="space-10"></div>';
 }
-
-$Parsedown = new Parsedown ();
-$readme = implode ( '', file ( __DIR__ . '/../README.md' ) );
 
 ?>
 <div class="widget-box widget-color-blue2">
@@ -40,10 +37,6 @@ $readme = implode ( '', file ( __DIR__ . '/../README.md' ) );
 
 							<table class="table table-bordered table-condensed table-striped">
 								<tbody>
-									<tr>
-										<td colspan="2"><article><?php echo $Parsedown->text($readme) ?></article>
-										</td>
-									</tr>
 									<tr>
 										<th class="category width-40"><?php echo plugin_lang_get( 'avatar_storage_path_title') ?><br>
 											<span class="small"><?php echo plugin_lang_get( 'avatar_storage_path_details') ?></span>

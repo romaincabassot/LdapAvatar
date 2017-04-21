@@ -17,7 +17,7 @@
  *
  * @copyright Copyright MantisBT Team - mantisbt-dev@lists.sourceforge.net
  */
-class LdapAvatarPlugin extends MantisPlugin {
+class MantisLdapAvatarPlugin extends MantisPlugin {
 	
 	/**
 	 * A method that populates the plugin information and minimum requirements.
@@ -27,9 +27,9 @@ class LdapAvatarPlugin extends MantisPlugin {
 	function register() {
 		$this->name = plugin_lang_get ( 'title' );
 		$this->description = plugin_lang_get ( 'description' );
-		$this->page = 'LdapAvatarConfig.php';
+		$this->page = 'MantisLdapAvatarConfig.php';
 		
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 		$this->requires = array (
 				'MantisCore' => '2.0.0' 
 		);
@@ -60,7 +60,6 @@ class LdapAvatarPlugin extends MantisPlugin {
 	function hooks() {
 		return array (
 				'EVENT_USER_AVATAR' => 'user_get_avatar',
-				'EVENT_LAYOUT_RESOURCES' => 'layout_resources',
 				'EVENT_LAYOUT_CONTENT_BEGIN' => 'check_requirements' 
 		);
 	}
@@ -81,13 +80,6 @@ class LdapAvatarPlugin extends MantisPlugin {
 		if (! file_exists ( $avatar_storage_path ) || ! is_writable ( $avatar_storage_path ) || ! is_dir ( $avatar_storage_path )) {
 			trigger_error ( 'Invalid avatar storage path: ' . $avatar_storage_path . ' must be a writable directory.', WARNING );
 		}
-	}
-	/**
-	 * Adds JS file for collapsing of README.md on LdapAvatarConfig.php page
-	 */
-	function layout_resources() {
-		echo '	<script type="text/javascript" src="' . plugin_file ( 'readmore.min.js', false, 'LdapAvatar' ) . '"></script>';
-		echo '	<script type="text/javascript" src="' . plugin_file ( 'readmore-readme.js', false, 'LdapAvatar' ) . '"></script>';
 	}
 	
 	/**

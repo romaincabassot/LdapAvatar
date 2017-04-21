@@ -1,16 +1,16 @@
 <?php
 
-$s_plugin_LdapAvatar_title = 'Avatars via LDAP';
-$s_plugin_LdapAvatar_description = 'A plugin that shows user avatars based on LDAP (requirements PHP GD and LDAP extensions).';
-$s_plugin_LdapAvatar_updated = 'Update done at ';
-$s_plugin_LdapAvatar_save = 'Update configuration';
-$s_plugin_LdapAvatar_avatar_storage_path_title = 'Avatars storage path';
-$s_plugin_LdapAvatar_avatar_storage_path_details = 'The path where the avatars from LDAP are cached.';
-$s_plugin_LdapAvatar_ldap_avatar_field_title = 'LDAP avatar attribute';
-$s_plugin_LdapAvatar_ldap_avatar_field_details = 'The name of the LDAP attribute where the avatar is stored (as bytes).';	
-$s_plugin_LdapAvatar_ldap_last_modified_field_title = 'LDAP last modified attribute';
-$s_plugin_LdapAvatar_ldap_last_modified_field_details = 'The name of the LDAP attribute where to check for a modification on the LDAP user.';	
-$s_plugin_LdapAvatar_avatar_max_width_title = 'Avatar maximum width ';
-$s_plugin_LdapAvatar_avatar_max_width_details = 'The maximum width an avatar can have without being resized.';	
-$s_plugin_LdapAvatar_avatar_max_height_title = 'Avatar maximum height';
-$s_plugin_LdapAvatar_avatar_max_height_details = 'The maximum height an avatar can have without being resized.';	
+$s_plugin_MantisLdapAvatar_title = 'Avatars via LDAP';
+$s_plugin_MantisLdapAvatar_description = 'A plugin that shows user avatars based on LDAP (requirements PHP GD and LDAP extensions).';
+$s_plugin_MantisLdapAvatar_updated = 'Update done at ';
+$s_plugin_MantisLdapAvatar_save = 'Update configuration';
+$s_plugin_MantisLdapAvatar_avatar_storage_path_title = 'Avatars storage path';
+$s_plugin_MantisLdapAvatar_avatar_storage_path_details = 'The path where the avatars from LDAP are cached.';
+$s_plugin_MantisLdapAvatar_ldap_avatar_field_title = 'LDAP avatar attribute';
+$s_plugin_MantisLdapAvatar_ldap_avatar_field_details = 'The name of the LDAP attribute where the avatar is stored (as bytes).';	
+$s_plugin_MantisLdapAvatar_ldap_last_modified_field_title = 'LDAP last modified attribute';
+$s_plugin_MantisLdapAvatar_ldap_last_modified_field_details = 'The name of the LDAP attribute where to check for a modification on the LDAP user.';	
+$s_plugin_MantisLdapAvatar_avatar_max_width_title = 'Avatar maximum width ';
+$s_plugin_MantisLdapAvatar_avatar_max_width_details = 'The maximum width an avatar can have without being resized.';	
+$s_plugin_MantisLdapAvatar_avatar_max_height_title = 'Avatar maximum height';
+$s_plugin_MantisLdapAvatar_avatar_max_height_details = 'The maximum height an avatar can have without being resized.';	
