@@ -10,7 +10,7 @@ If the avatar exceeds the configured maximum width or height, the avatar is resi
 
 ## Configuration
 
-The configuration is available via 
+The configuration is available via the Mantis manage plugins admin page.
 
 **Avatars storage path**
 
